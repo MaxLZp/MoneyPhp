@@ -8,6 +8,12 @@ namespace MaxLZp\Money;
 interface ICurrency
 {
     /**
+     * Compares two currency instances
+     * @param ICurrency $other
+     * @return bool
+     */
+    public function equals(ICurrency $other): bool;
+    /**
      * Returns currency string code
      * @return string
      */
