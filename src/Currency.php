@@ -1,4 +1,5 @@
 <?php
+
 namespace MaxLZp\Money;
 
 /**
@@ -19,6 +20,7 @@ class Currency implements ICurrency
      * @var Currency name
      */
     protected $name;
+
     /**
      * Currency constructor.
      * @param string $code
@@ -29,11 +31,13 @@ class Currency implements ICurrency
         string $code,
         string $name,
         string $isoCode = '0'
-    ) {
+    )
+    {
         $this->code = $code;
         $this->isoCode = $isoCode;
         $this->name = $name;
     }
+
     /**
      * {@inheritdoc}
      */
@@ -42,6 +46,7 @@ class Currency implements ICurrency
         return $this->codesAreEqual($other) &&
             $this->isoCodesAreEqual($other);
     }
+
     /**
      * {@inheritdoc}
      */
@@ -49,6 +54,7 @@ class Currency implements ICurrency
     {
         return $this->code;
     }
+
     /**
      * {@inheritdoc}
      */
@@ -56,6 +62,7 @@ class Currency implements ICurrency
     {
         return $this->isoCode;
     }
+
     /**
      * {@inheritdoc}
      */
@@ -80,6 +87,7 @@ class Currency implements ICurrency
     {
         return $this->stringsAreEqual($this->getCode(), $other->getCode());
     }
+
     /**
      * @param ICurrency $other
      * @return bool
@@ -88,6 +96,7 @@ class Currency implements ICurrency
     {
         return $this->stringsAreEqual($this->getIsoCode(), $other->getIsoCode());
     }
+
     /**
      * @param string $first
      * @param string $second
