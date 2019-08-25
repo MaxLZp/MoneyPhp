@@ -1,0 +1,22 @@
+{
+    "name": "maxlzp/money",
+    "description": "Php implementation of Money entity",
+    "type": "library",
+    "authors": [
+        {
+            "name": "MaxLZp",
+            "email": "lmax_job@mail.ru"
+        }
+    ],
+    "require": {
+        "php" : ">=7.1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "MaxLZp\\Money\\": "src/"
+        }
+    }
+}
