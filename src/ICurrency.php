@@ -20,9 +20,9 @@ interface ICurrency
     public function getCode(): string;
     /**
      * Returns currency iso code
-     * @return number
+     * @return string
      */
-    public function getIsoCode(): number;
+    public function getIsoCode(): string;
     /**
      * Returns currency name
      * @return string
