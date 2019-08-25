@@ -1,4 +1,5 @@
 <?php
+
 namespace MaxLZp\Money;
 
 /**
@@ -13,16 +14,19 @@ interface ICurrency
      * @return bool
      */
     public function equals(ICurrency $other): bool;
+
     /**
      * Returns currency string code
      * @return string
      */
     public function getCode(): string;
+
     /**
      * Returns currency iso code
      * @return string
      */
     public function getIsoCode(): string;
+
     /**
      * Returns currency name
      * @return string

@@ -1,12 +1,14 @@
 <?php
 namespace maxlzp\money\tests;
+
+use PHPUnit\Framework\TestCase;
 use MaxLZp\Money\Currency;
 
 /**
  * Class CurrencyTest
  * @package Tests
  */
-class CurrencyTest extends \PHPUnit_Framework_TestCase
+class CurrencyTest extends TestCase
 {
     /**
      * @test
