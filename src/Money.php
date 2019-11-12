@@ -44,6 +44,23 @@ class Money implements IMoney
     }
 
     /**
+     * Magic factory method to create IMoney instances with
+     * Currency as method name
+     *
+     * Creating 5 cents:
+     * Money::USD(5) => new Money(5, new Currency('USD', 'US Dollars'));
+     * Creating 1 EURO:
+     * Money::EUR(100) => new Money(100, new Currency('EUR', 'Euro'));
+     *
+     * @param $name
+     * @param $arguments
+     */
+    public static function __callStatic($name, $arguments)
+    {
+        return new self($arguments[0], Currency::$name());
+    }
+
+    /**
      * Adds Money of the same currency
      * @param IMoney $other
      * @return IMoney
@@ -220,6 +237,7 @@ class Money implements IMoney
         if ($factor < 0)
             throw new \InvalidArgumentException("Factor cannot be less than 0");
     }
+
 
     /**
      * @param float $value

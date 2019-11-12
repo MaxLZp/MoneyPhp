@@ -43,6 +43,16 @@ class CurrencyTest extends TestCase
     /**
      * @test
      */
+    public function shouldCreateUSCents()
+    {
+        $expectedCurrency = new Currency('USD', 'US Dollar', 840);
+        $cents = Currency::USD();
+
+        $this->assertEquals($expectedCurrency, $cents);
+    }
+    /**
+     * @test
+     */
     public function Currency_equals_twoIdenticalCurrenciesAreEqual()
     {
         $code = 'USD';

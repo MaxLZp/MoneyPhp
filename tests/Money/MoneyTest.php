@@ -31,6 +31,19 @@ class MoneyTest extends TestCase
     /**
      * @test
      */
+    public function shouldCreate5USCents()
+    {
+        $expectedValue = 5;
+        $expectedCurrency = new Currency('USD', 'US Dollar', 840);
+        $fiveCents = Money::USD(5);
+
+        $this->assertEquals($expectedValue, $fiveCents->getAmount());
+        $this->assertEquals($expectedCurrency, $fiveCents->getCurrency());
+    }
+
+    /**
+     * @test
+     */
     public function Money_constructor_success()
     {
         $money = new Money(123, self::createDollarsCurrency());

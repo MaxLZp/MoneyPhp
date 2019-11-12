@@ -13,6 +13,7 @@ class Currency implements ICurrency
      */
     protected $code;
     /**
+     * Currency ISO code (ISO-4217)
      * @var string Currency iso-code
      */
     protected $isoCode;
@@ -36,6 +37,30 @@ class Currency implements ICurrency
         $this->code = $code;
         $this->isoCode = $isoCode;
         $this->name = $name;
+    }
+
+    /**
+     * Magic factory method to create ICurrency instances with
+     * Currency as method name
+     *
+     * Creating USD:
+     * Currency::USD => new Currency('USD', 'US Dollars');
+     * Creating EURO:
+     * Currency::EUR(100) => new Currency('EUR', 'Euro'))
+     *
+     * @param $name
+     * @param $arguments
+     */
+    public static function __callStatic($name, $arguments)
+    {
+        if (self::isSupportedCurrency($name)) {
+            return new self(
+                    $name,
+                    CurrencyConstants::SUPPORTED_CURRENCIES[$name]['name'],
+                    CurrencyConstants::SUPPORTED_CURRENCIES[$name]['isoCode']
+            );
+        }
+        throw new \InvalidArgumentException('Request currency is not supported');
     }
 
     /**
@@ -95,6 +120,16 @@ class Currency implements ICurrency
     protected function isoCodesAreEqual(ICurrency $other): bool
     {
         return $this->stringsAreEqual($this->getIsoCode(), $other->getIsoCode());
+    }
+
+    /**
+     * Checks if currency is supported or not
+     * @param $currencyName
+     * @return bool
+     */
+    protected static function isSupportedCurrency($currencyName): bool
+    {
+        return \array_key_exists($currencyName, CurrencyConstants::SUPPORTED_CURRENCIES);
     }
 
     /**
