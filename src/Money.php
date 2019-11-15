@@ -1,14 +1,14 @@
 <?php
-namespace MaxLZp\Money;
+namespace maxlzp\money;
 
-use MaxLZp\Money\Behaviours\Rounding\RoundingBehaviourFactory;
-use MaxLZp\Money\Behaviours\Rounding\RoundingBehaviourFactoryConstants;
-use MaxLZp\Money\Exceptions\MoneyCurrencyMismatchException;
-use MaxLZp\Money\Exceptions\NegativeMoneyAmountException;
+use maxlzp\money\Behaviours\Rounding\RoundingBehaviourFactory;
+use maxlzp\money\Behaviours\Rounding\RoundingBehaviourFactoryConstants;
+use maxlzp\money\Exceptions\MoneyCurrencyMismatchException;
+use maxlzp\money\Exceptions\NegativeMoneyAmountException;
 
 /**
  * Class Money
- * @package MaxLZp\Money
+ * @package maxlzp\money
  */
 class Money implements IMoney
 {

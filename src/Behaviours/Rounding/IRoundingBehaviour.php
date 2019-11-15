@@ -1,9 +1,10 @@
 <?php
-namespace MaxLZp\Money\Behaviours\Rounding;
+
+namespace maxlzp\money\Behaviours\Rounding;
 
 /**
  * Interface IRoundingBehaviour
- * @package MaxLZp\Money\Behaviours\Rounding
+ * @package maxlzp\money\Behaviours\Rounding
  */
 interface IRoundingBehaviour
 {

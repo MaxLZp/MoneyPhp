@@ -1,10 +1,10 @@
 <?php
 
-namespace MaxLZp\Money;
+namespace maxlzp\money;
 
 /**
  * Class Currency
- * @package MaxLZp\Money
+ * @package maxlzp\money
  */
 class Currency implements ICurrency
 {

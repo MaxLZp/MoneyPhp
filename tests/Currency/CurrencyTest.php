@@ -1,8 +1,9 @@
 <?php
+
 namespace maxlzp\money\tests;
 
 use PHPUnit\Framework\TestCase;
-use MaxLZp\Money\Currency;
+use maxlzp\money\Currency;
 
 /**
  * Class CurrencyTest

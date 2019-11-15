@@ -1,9 +1,9 @@
 <?php
-namespace MaxLZp\Money\Behaviours\Rounding;
+namespace maxlzp\money\Behaviours\Rounding;
 
 /**
  * Class RoundRoundingBehaviour
- * @package MaxLZp\Money\Behaviours\Rounding
+ * @package maxlzp\money\Behaviours\Rounding
  */
 class RoundRoundingBehaviour implements IRoundingBehaviour
 {

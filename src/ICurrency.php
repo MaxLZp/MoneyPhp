@@ -1,10 +1,10 @@
 <?php
 
-namespace MaxLZp\Money;
+namespace maxlzp\money;
 
 /**
  * Interface ICurrency
- * @package MaxLZp\Money
+ * @package maxlzp\money
  */
 interface ICurrency
 {

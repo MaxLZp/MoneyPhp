@@ -1,12 +1,12 @@
 <?php
 
-namespace MaxLZp\Money;
+namespace maxlzp\money;
 
-use MaxLZp\Money\Exceptions\MoneyCurrencyMismatchException;
+use maxlzp\money\Exceptions\MoneyCurrencyMismatchException;
 
 /**
  * Interface IMoney
- * @package MaxLZp\Money
+ * @package maxlzp\money
  */
 interface IMoney
 {

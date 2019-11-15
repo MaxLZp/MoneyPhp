@@ -1,9 +1,9 @@
 <?php
-namespace MaxLZp\Money\Exceptions;
+namespace maxlzp\money\Exceptions;
 
 /**
  * Class MoneyCurrencyMismatchException
- * @package MaxLZp\Money\Exceptions
+ * @package maxlzp\money\Exceptions
  */
 class MoneyCurrencyMismatchException extends \Exception
 {

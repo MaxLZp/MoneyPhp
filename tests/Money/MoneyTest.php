@@ -2,8 +2,8 @@
 
 namespace maxlzp\money\tests;
 
-use MaxLZp\Money\Currency;
-use MaxLZp\Money\Money;
+use maxlzp\money\Currency;
+use maxlzp\money\Money;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -52,7 +52,7 @@ class MoneyTest extends TestCase
 
     /**
      * @test
-     * @expectedException MaxLZp\Money\Exceptions\NegativeMoneyAmountException
+     * @expectedException maxlzp\money\Exceptions\NegativeMoneyAmountException
      */
     public function Money_constructor_shouldThrowExceptionForNegativeAmount()
     {
@@ -62,7 +62,7 @@ class MoneyTest extends TestCase
 
     /**
      * @test
-     * @expectedException MaxLZp\Money\Exceptions\MoneyCurrencyMismatchException
+     * @expectedException maxlzp\money\Exceptions\MoneyCurrencyMismatchException
      */
     public function Money_add_ShouldThrowExceptionForMoenyWithMismatchingCurrencies()
     {
@@ -88,7 +88,7 @@ class MoneyTest extends TestCase
 
     /**
      * @test
-     * @expectedException MaxLZp\Money\Exceptions\MoneyCurrencyMismatchException
+     * @expectedException maxlzp\money\Exceptions\MoneyCurrencyMismatchException
      */
     public function Money_compare_ShouldThrowExceptionForMoenyWithMismatchingCurrencies()
     {
@@ -189,7 +189,7 @@ class MoneyTest extends TestCase
 
     /**
      * @test
-     * @expectedException MaxLZp\Money\Exceptions\MoneyCurrencyMismatchException
+     * @expectedException maxlzp\money\Exceptions\MoneyCurrencyMismatchException
      */
     public function Money_isGreaterThan_ShouldThrowExceptionForMoenyWithMismatchingCurrencies()
     {
@@ -234,7 +234,7 @@ class MoneyTest extends TestCase
 
     /**
      * @test
-     * @expectedException MaxLZp\Money\Exceptions\MoneyCurrencyMismatchException
+     * @expectedException maxlzp\money\Exceptions\MoneyCurrencyMismatchException
      */
     public function Money_isGreaterOrEqualThan_ShouldThrowExceptionForMoenyWithMismatchingCurrencies()
     {
@@ -279,7 +279,7 @@ class MoneyTest extends TestCase
 
     /**
      * @test
-     * @expectedException MaxLZp\Money\Exceptions\MoneyCurrencyMismatchException
+     * @expectedException maxlzp\money\Exceptions\MoneyCurrencyMismatchException
      */
     public function Money_isLessThan_ShouldThrowExceptionForMoenyWithMismatchingCurrencies()
     {
@@ -324,7 +324,7 @@ class MoneyTest extends TestCase
 
     /**
      * @test
-     * @expectedException MaxLZp\Money\Exceptions\MoneyCurrencyMismatchException
+     * @expectedException maxlzp\money\Exceptions\MoneyCurrencyMismatchException
      */
     public function Money_isLessOrEqualThan_ShouldThrowExceptionForMoenyWithMismatchingCurrencies()
     {
@@ -412,7 +412,7 @@ class MoneyTest extends TestCase
 
     /**
      * @test
-     * @expectedException MaxLZp\Money\Exceptions\MoneyCurrencyMismatchException
+     * @expectedException maxlzp\money\Exceptions\MoneyCurrencyMismatchException
      */
     public function Money_subtract_ShouldThrowExceptionForMoneyWithMismatchingCurrencies()
     {
@@ -424,7 +424,7 @@ class MoneyTest extends TestCase
 
     /**
      * @test
-     * @expectedException MaxLZp\Money\Exceptions\NegativeMoneyAmountException
+     * @expectedException maxlzp\money\Exceptions\NegativeMoneyAmountException
      */
     public function Money_subtract_ShouldThrowExceptionWhenSubtractingBiggerAmount()
     {

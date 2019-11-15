@@ -1,5 +1,5 @@
 <?php
-namespace MaxLZp\Money;
+namespace maxlzp\money;
 
 
 class CurrencyConstants

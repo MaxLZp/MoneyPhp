@@ -1,9 +1,9 @@
 <?php
-namespace MaxLZp\Money\Exceptions;
+namespace maxlzp\money\Exceptions;
 
 /**
  * Class NegativeMoneyAmountException
- * @package MaxLZp\Money\Exceptions
+ * @package maxlzp\money\Exceptions
  */
 class NegativeMoneyAmountException extends \Exception
 {
