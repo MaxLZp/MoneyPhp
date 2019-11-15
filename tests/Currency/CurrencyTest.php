@@ -25,6 +25,7 @@ class CurrencyTest extends TestCase
         $this->assertEquals($expectedIsoCode, $currency->getIsoCode());
         $this->assertEquals($expectedName, $currency->getName());
     }
+
     /**
      * @test
      */
@@ -40,15 +41,48 @@ class CurrencyTest extends TestCase
         $this->assertEquals($expectedIsoCode, $currency->getIsoCode());
         $this->assertEquals($expectedName, $currency->getName());
     }
+
     /**
      * @test
      */
-    public function shouldCreateUSCents()
+    public function Currency_callStatic_shouldCreateUSCents()
     {
         $expectedCurrency = new Currency('USD', 'US Dollar', 840);
         $cents = Currency::USD();
 
         $this->assertEquals($expectedCurrency, $cents);
+    }
+
+    /**
+     * @test
+     */
+    public function Currency_callStatic_CreateCurrencyFromArgument()
+    {
+        $arguments = [
+            'USD' => [
+                'name' => 'US Dollar',
+                'isoCode' => '840',
+            ],
+        ];
+        $expectedCurrency = new Currency('USD', 'US Dollar', 840);
+        $money = Currency::USD($arguments);
+
+        $this->assertEquals($expectedCurrency, $money);
+    }
+
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     */
+    public function Currency_callStatic_FailsToCreateCurrencyFromArgumentWhenCurrencyIsNotList()
+    {
+        $arguments = [
+            'USD' => [
+                'name' => 'US Dollar',
+                'isoCode' => '840',
+            ],
+        ];
+        $money = Currency::EUR($arguments);
     }
     /**
      * @test
@@ -63,6 +97,7 @@ class CurrencyTest extends TestCase
 
         $this->assertTrue($currency1->equals($currency2));
     }
+
     /**
      * @test
      */
@@ -78,6 +113,7 @@ class CurrencyTest extends TestCase
         $this->assertTrue($currency1->equals($currency2));
         $currency1->getCode();
     }
+
     /**
      * @test
      */
@@ -93,6 +129,7 @@ class CurrencyTest extends TestCase
         $this->assertTrue($currency1->equals($currency2));
         $currency1->getCode();
     }
+
     /**
      * @test
      */
@@ -109,6 +146,7 @@ class CurrencyTest extends TestCase
         $this->assertFalse($currency1->equals($currency2));
         $currency1->getCode();
     }
+
     /**
      * @test
      */
@@ -124,6 +162,7 @@ class CurrencyTest extends TestCase
         $this->assertFalse($currency1->equals($currency2));
         $currency1->getCode();
     }
+
     /**
      * @test
      */

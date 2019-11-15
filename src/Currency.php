@@ -12,15 +12,22 @@ class Currency implements ICurrency
      * @var string Currency string-code
      */
     protected $code;
+
     /**
      * Currency ISO code (ISO-4217)
      * @var string Currency iso-code
      */
     protected $isoCode;
+
     /**
      * @var Currency name
      */
     protected $name;
+
+    /**
+     * @var
+     */
+    protected static $supportedCurrencies;
 
     /**
      * Currency constructor.
@@ -53,11 +60,14 @@ class Currency implements ICurrency
      */
     public static function __callStatic($name, $arguments)
     {
-        if (self::isSupportedCurrency($name)) {
+        self::initSupportedCurrencies();
+        self::resetSupportedCurrencies($arguments);
+
+        if (self::isSupportedCurrency(self::$supportedCurrencies, $name)) {
             return new self(
-                    $name,
-                    CurrencyConstants::SUPPORTED_CURRENCIES[$name]['name'],
-                    CurrencyConstants::SUPPORTED_CURRENCIES[$name]['isoCode']
+                $name,
+                self::$supportedCurrencies[$name]['name'],
+                self::$supportedCurrencies[$name]['isoCode']
             );
         }
         throw new \InvalidArgumentException('Request currency is not supported');
@@ -114,6 +124,16 @@ class Currency implements ICurrency
     }
 
     /**
+     * Init array of supported currencies with initial values.
+     */
+    protected static function initSupportedCurrencies()
+    {
+        if (null === self::$supportedCurrencies) {
+            self::$supportedCurrencies = CurrencyConstants::SUPPORTED_CURRENCIES;
+        }
+    }
+
+    /**
      * @param ICurrency $other
      * @return bool
      */
@@ -124,12 +144,24 @@ class Currency implements ICurrency
 
     /**
      * Checks if currency is supported or not
+     * @param array $currencies
      * @param $currencyName
      * @return bool
      */
-    protected static function isSupportedCurrency($currencyName): bool
+    protected static function isSupportedCurrency($currencies, $currencyName): bool
     {
-        return \array_key_exists($currencyName, CurrencyConstants::SUPPORTED_CURRENCIES);
+        return \array_key_exists($currencyName, $currencies);
+    }
+
+    /**
+     * Reset supported currencies array with data provided.
+     * @param $arguments
+     */
+    protected static function resetSupportedCurrencies($arguments)
+    {
+        if (\count($arguments) && (\is_array($arguments[0]))) {
+            self::$supportedCurrencies = $arguments[0];
+        }
     }
 
     /**

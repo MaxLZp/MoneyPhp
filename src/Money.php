@@ -220,6 +220,7 @@ class Money implements IMoney
             return;
         throw new MoneyCurrencyMismatchException();
     }
+
     /**
      * @param IMoney $other
      * @throws NegativeMoneyAmountException
@@ -228,6 +229,7 @@ class Money implements IMoney
     {
         if ($amount < 0) throw new NegativeMoneyAmountException();
     }
+
     /**
      * @param float $factor
      * @throws NegativeMoneyAmountException
@@ -237,7 +239,6 @@ class Money implements IMoney
         if ($factor < 0)
             throw new \InvalidArgumentException("Factor cannot be less than 0");
     }
-
 
     /**
      * @param float $value
