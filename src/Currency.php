@@ -6,7 +6,7 @@ namespace maxlzp\money;
  * Class Currency
  * @package maxlzp\money
  */
-class Currency implements ICurrency
+class Currency implements CurrencyInterface
 {
     /**
      * @var string Currency string-code
@@ -76,7 +76,7 @@ class Currency implements ICurrency
     /**
      * {@inheritdoc}
      */
-    public function equals(ICurrency $other): bool
+    public function equals(CurrencyInterface $other): bool
     {
         return $this->codesAreEqual($other) &&
             $this->isoCodesAreEqual($other);
@@ -115,10 +115,10 @@ class Currency implements ICurrency
     }
 
     /**
-     * @param ICurrency $other
+     * @param CurrencyInterface $other
      * @return bool
      */
-    protected function codesAreEqual(ICurrency $other): bool
+    protected function codesAreEqual(CurrencyInterface $other): bool
     {
         return $this->stringsAreEqual($this->getCode(), $other->getCode());
     }
@@ -134,10 +134,10 @@ class Currency implements ICurrency
     }
 
     /**
-     * @param ICurrency $other
+     * @param CurrencyInterface $other
      * @return bool
      */
-    protected function isoCodesAreEqual(ICurrency $other): bool
+    protected function isoCodesAreEqual(CurrencyInterface $other): bool
     {
         return $this->stringsAreEqual($this->getIsoCode(), $other->getIsoCode());
     }

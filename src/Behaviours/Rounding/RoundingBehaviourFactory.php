@@ -9,9 +9,9 @@ class RoundingBehaviourFactory
 {
     /**
      * @param int $mode
-     * @return IRoundingBehaviour
+     * @return RoundingBehaviourInterface
      */
-    public static function create(int $mode) : IRoundingBehaviour
+    public static function create(int $mode) : RoundingBehaviourInterface
     {
         switch ($mode) {
             case RoundingBehaviourFactoryConstants::MODE_ROUND:
@@ -23,9 +23,9 @@ class RoundingBehaviourFactory
     }
 
     /**
-     * @return IRoundingBehaviour
+     * @return RoundingBehaviourInterface
      */
-    protected static function createRound(): IRoundingBehaviour
+    protected static function createRound(): RoundingBehaviourInterface
     {
         return new RoundRoundingBehaviour();
     }

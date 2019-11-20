@@ -8,31 +8,31 @@ use maxlzp\money\Exceptions\MoneyCurrencyMismatchException;
  * Interface IMoney
  * @package maxlzp\money
  */
-interface IMoney
+interface MoneyInterface
 {
     /**
      * Adds Money of the same currency
-     * @param IMoney $other
-     * @return IMoney
+     * @param MoneyInterface $other
+     * @return MoneyInterface
      * @throws MoneyCurrencyMismatchException
      */
-    public function add(IMoney $other): IMoney;
+    public function add(MoneyInterface $other): MoneyInterface;
 
     /**
      * Returns an integer <0 if this amount is less than other amount;
      *  0 - if amounts are equal; >0 - if this amount is greater than other
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @return int Integer
      */
-    public function compare(IMoney $other): int;
+    public function compare(MoneyInterface $other): int;
 
     /**
      * Checks whether the value represented by this object equals to the other.
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @return bool
      * @throws MoneyCurrencyMismatchException
      */
-    public function equals(IMoney $other): bool;
+    public function equals(MoneyInterface $other): bool;
 
     /**
      * Returns amount value(in smallest possible currency units(cents, etc.))
@@ -42,59 +42,59 @@ interface IMoney
 
     /**
      * Returns money currency
-     * @return ICurrency
+     * @return CurrencyInterface
      */
-    public function getCurrency(): ICurrency;
+    public function getCurrency(): CurrencyInterface;
 
     /**
      * Checks whether this amount is greater than the other's.
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @return bool
      * @throws MoneyCurrencyMismatchException
      */
-    public function isGreaterThan(IMoney $other): bool;
+    public function isGreaterThan(MoneyInterface $other): bool;
 
     /**
      * Checks whether this amount is greater or equal than the other's.
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @return bool
      * @throws MoneyCurrencyMismatchException
      */
-    public function isGreaterOrEqualThan(IMoney $other): bool;
+    public function isGreaterOrEqualThan(MoneyInterface $other): bool;
 
     /**
      * Checks whether the Money is of the same Currency.
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @return bool
      */
-    public function isSameCurrency(IMoney $other): bool;
+    public function isSameCurrency(MoneyInterface $other): bool;
 
     /**
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @return mixed
      * @throws MoneyCurrencyMismatchException
      */
-    public function isLessThan(IMoney $other): bool;
+    public function isLessThan(MoneyInterface $other): bool;
 
     /**
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @return bool
      * @throws MoneyCurrencyMismatchException
      */
-    public function isLessOrEqualThan(IMoney $other): bool;
+    public function isLessOrEqualThan(MoneyInterface $other): bool;
 
     /**
      * Multiplies money amount
      * @param number $factor
-     * @return IMoney
+     * @return MoneyInterface
      */
-    public function multiply(float $factor): IMoney;
+    public function multiply(float $factor): MoneyInterface;
 
     /**
      * Subtracts Money of the same currency
-     * @param IMoney $other
-     * @return IMoney
+     * @param MoneyInterface $other
+     * @return MoneyInterface
      * @throws MoneyCurrencyMismatchException
      */
-    public function subtract(IMoney $other): IMoney;
+    public function subtract(MoneyInterface $other): MoneyInterface;
 }

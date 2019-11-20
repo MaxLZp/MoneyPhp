@@ -3,10 +3,10 @@
 namespace maxlzp\money\Behaviours\Rounding;
 
 /**
- * Interface IRoundingBehaviour
+ * Interface RoundingBehaviourInterface
  * @package maxlzp\money\Behaviours\Rounding
  */
-interface IRoundingBehaviour
+interface RoundingBehaviourInterface
 {
     /**
      * Rounds input

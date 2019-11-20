@@ -3,17 +3,17 @@
 namespace maxlzp\money;
 
 /**
- * Interface ICurrency
+ * Interface CurrencyInterface
  * @package maxlzp\money
  */
-interface ICurrency
+interface CurrencyInterface
 {
     /**
      * Compares two currency instances
-     * @param ICurrency $other
+     * @param CurrencyInterface $other
      * @return bool
      */
-    public function equals(ICurrency $other): bool;
+    public function equals(CurrencyInterface $other): bool;
 
     /**
      * Returns currency string code

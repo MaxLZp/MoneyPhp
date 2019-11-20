@@ -10,7 +10,7 @@ use maxlzp\money\Exceptions\NegativeMoneyAmountException;
  * Class Money
  * @package maxlzp\money
  */
-class Money implements IMoney
+class Money implements MoneyInterface
 {
     /**
      * Money amount value(in smallest possible currency units(cents, etc.)
@@ -18,7 +18,7 @@ class Money implements IMoney
      */
     protected $amount;
     /**
-     * @var ICurrency
+     * @var CurrencyInterface
      */
     protected $currency;
     /**
@@ -29,12 +29,12 @@ class Money implements IMoney
     /**
      * Money constructor.
      * @param int $amount
-     * @param ICurrency $currency
+     * @param CurrencyInterface $currency
      * @throws NegativeMoneyAmountException
      */
     public function __construct(
         int $amount,
-        ICurrency $currency,
+        CurrencyInterface $currency,
         $roundingMode = RoundingBehaviourFactoryConstants::MODE_ROUND)
     {
         $this->guardNegativeAmount($amount);
@@ -62,11 +62,11 @@ class Money implements IMoney
 
     /**
      * Adds Money of the same currency
-     * @param IMoney $other
-     * @return IMoney
+     * @param MoneyInterface $other
+     * @return MoneyInterface
      * @throws MoneyCurrencyMismatchException
      */
-    public function add(IMoney $other): IMoney
+    public function add(MoneyInterface $other): MoneyInterface
     {
         $this->guardCurrencyMismatch($other);
         return new self($this->getAmount() + $other->getAmount(), $this->getCurrency());
@@ -75,11 +75,11 @@ class Money implements IMoney
     /**
      * Returns an integer <0 if this amount is less than other amount;
      *  0 - if amounts are equal; >0 - if this amount is greater than other
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @return int Integer
      * @throws MoneyCurrencyMismatchException
      */
-    public function compare(IMoney $other): int
+    public function compare(MoneyInterface $other): int
     {
         $this->guardCurrencyMismatch($other);
         return $this->getAmount() - $other->getAmount();
@@ -87,10 +87,10 @@ class Money implements IMoney
 
     /**
      * Checks whether the value represented by this object equals to the other.
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @return bool
      */
-    public function equals(IMoney $other): bool
+    public function equals(MoneyInterface $other): bool
     {
         if ($this->isSameCurrency($other))
         {
@@ -110,20 +110,20 @@ class Money implements IMoney
 
     /**
      * Returns money currency
-     * @return ICurrency
+     * @return CurrencyInterface
      */
-    public function getCurrency(): ICurrency
+    public function getCurrency(): CurrencyInterface
     {
         return $this->currency;
     }
 
     /**
      * Checks whether this amount is greater than the other's.
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @return bool
      * @throws MoneyCurrencyMismatchException
      */
-    public function isGreaterThan(IMoney $other): bool
+    public function isGreaterThan(MoneyInterface $other): bool
     {
         $this->guardCurrencyMismatch($other);
         return $this->compare($other) > 0;
@@ -131,11 +131,11 @@ class Money implements IMoney
 
     /**
      * Checks whether this amount is greater or equal than the other's.
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @return bool
      * @throws MoneyCurrencyMismatchException
      */
-    public function isGreaterOrEqualThan(IMoney $other): bool
+    public function isGreaterOrEqualThan(MoneyInterface $other): bool
     {
         $this->guardCurrencyMismatch($other);
         return $this->compare($other) >= 0;
@@ -143,31 +143,31 @@ class Money implements IMoney
 
     /**
      * Checks whether the Money is of the same Currency.
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @return bool
      */
-    public function isSameCurrency(IMoney $other): bool
+    public function isSameCurrency(MoneyInterface $other): bool
     {
         return $this->getCurrency()->equals($other->getCurrency());
     }
 
     /**
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @return mixed
      * @throws MoneyCurrencyMismatchException
      */
-    public function isLessThan(IMoney $other): bool
+    public function isLessThan(MoneyInterface $other): bool
     {
         $this->guardCurrencyMismatch($other);
         return $this->compare($other) < 0;
     }
 
     /**
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @return bool
      * @throws MoneyCurrencyMismatchException
      */
-    public function isLessOrEqualThan(IMoney $other): bool
+    public function isLessOrEqualThan(MoneyInterface $other): bool
     {
         $this->guardCurrencyMismatch($other);
         return $this->compare($other) <= 0;
@@ -176,9 +176,9 @@ class Money implements IMoney
     /**
      * Multiplies money amount
      * @param number $factor
-     * @return IMoney
+     * @return MoneyInterface
      */
-    public function multiply(float $factor): IMoney
+    public function multiply(float $factor): MoneyInterface
     {
         $this->guardNegativeFactor($factor);
         $newAmount = $this->round($this->getAmount() * $factor);
@@ -187,12 +187,12 @@ class Money implements IMoney
 
     /**
      * Subtracts Money of the same currency
-     * @param IMoney $other
-     * @return IMoney
+     * @param MoneyInterface $other
+     * @return MoneyInterface
      * @throws MoneyCurrencyMismatchException
      * @throws NegativeMoneyAmountException
      */
-    public function subtract(IMoney $other): IMoney
+    public function subtract(MoneyInterface $other): MoneyInterface
     {
         $this->guardCurrencyMismatch($other);
         $this->guardBiggerAmountSubtraction($other);
@@ -201,20 +201,20 @@ class Money implements IMoney
     }
 
     /**
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @throws NegativeMoneyAmountException
      */
-    public function guardBiggerAmountSubtraction(IMoney $other): void
+    public function guardBiggerAmountSubtraction(MoneyInterface $other): void
     {
         if ($this->isLessThan($other))
             throw new NegativeMoneyAmountException("Money subtraction result cannot be negative");
     }
 
     /**
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @throws MoneyCurrencyMismatchException
      */
-    protected function guardCurrencyMismatch(IMoney $other): void
+    protected function guardCurrencyMismatch(MoneyInterface $other): void
     {
         if ($this->getCurrency()->equals($other->getCurrency()))
             return;
@@ -222,7 +222,7 @@ class Money implements IMoney
     }
 
     /**
-     * @param IMoney $other
+     * @param MoneyInterface $other
      * @throws NegativeMoneyAmountException
      */
     protected function guardNegativeAmount(int $amount): void
