@@ -57,6 +57,7 @@ class Currency implements CurrencyInterface
      *
      * @param $name
      * @param $arguments
+     * @return Currency
      */
     public static function __callStatic($name, $arguments)
     {
