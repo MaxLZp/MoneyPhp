@@ -25,9 +25,9 @@ class Currency implements CurrencyInterface
     protected $name;
 
     /**
-     * @var
+     * @var CurrenciesSourceInterface
      */
-    protected static $supportedCurrencies;
+    protected static $currenciesSource;
 
     /**
      * Currency constructor.
@@ -62,16 +62,12 @@ class Currency implements CurrencyInterface
     public static function __callStatic($name, $arguments)
     {
         self::initSupportedCurrencies();
-        self::resetSupportedCurrencies($arguments);
-
-        if (self::isSupportedCurrency(self::$supportedCurrencies, $name)) {
-            return new self(
-                $name,
-                self::$supportedCurrencies[$name]['name'],
-                self::$supportedCurrencies[$name]['isoCode']
-            );
-        }
-        throw new \InvalidArgumentException('Request currency is not supported');
+        $currencyDto = self::$currenciesSource->getWithCode($name);
+        return new self(
+            $name,
+            $currencyDto->name,
+            $currencyDto->isoCode
+        );
     }
 
     /**
@@ -129,8 +125,8 @@ class Currency implements CurrencyInterface
      */
     protected static function initSupportedCurrencies()
     {
-        if (null === self::$supportedCurrencies) {
-            self::$supportedCurrencies = CurrencyConstants::SUPPORTED_CURRENCIES;
+        if (null === self::$currenciesSource) {
+            self::$currenciesSource = new DefaultCurrenciesSource();
         }
     }
 
@@ -144,25 +140,12 @@ class Currency implements CurrencyInterface
     }
 
     /**
-     * Checks if currency is supported or not
-     * @param array $currencies
-     * @param $currencyName
-     * @return bool
-     */
-    protected static function isSupportedCurrency($currencies, $currencyName): bool
-    {
-        return \array_key_exists($currencyName, $currencies);
-    }
-
-    /**
      * Reset supported currencies array with data provided.
-     * @param $arguments
+     * @param CurrenciesSourceInterface $source
      */
-    protected static function resetSupportedCurrencies($arguments)
+    protected static function resetCurrenciesSource(CurrenciesSourceInterface $source)
     {
-        if (\count($arguments) && (\is_array($arguments[0]))) {
-            self::$supportedCurrencies = $arguments[0];
-        }
+        self::$currenciesSource = $source;
     }
 
     /**

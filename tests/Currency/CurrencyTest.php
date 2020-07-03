@@ -3,6 +3,7 @@
 namespace maxlzp\money\tests;
 
 use maxlzp\money\Currency;
+use maxlzp\money\DefaultCurrenciesSource;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -73,10 +74,10 @@ class CurrencyTest extends TestCase
 
     /**
      * @test
-     * @expectedException \InvalidArgumentException
      */
     public function Currency_callStatic_FailsToCreateCurrencyFromArgumentWhenCurrencyIsNotList()
     {
+
         $arguments = [
             'USD' => [
                 'name' => 'US Dollar',
@@ -178,5 +179,18 @@ class CurrencyTest extends TestCase
 
         $this->assertFalse($currency1->equals($currency2));
         $currency1->getCode();
+    }
+
+    /**
+     * @test
+     */
+    public function Currency_toString_shouldReturnCode()
+    {
+        $code = 'USD';
+        $name = 'US Dollar';
+        $isoCode1 = '840';
+        $currency = new Currency($code, $name, $isoCode1);
+
+        $this->assertEquals($code, $currency->__toString());
     }
 }
