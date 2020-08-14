@@ -4,7 +4,7 @@
  * @link https://github.com/MaxLZp
  */
 
-namespace MaxLZp\Money;
+namespace maxlzp\money;
 
 /**
  * Class CurrencyDto
@@ -41,7 +41,6 @@ class CurrencyDto
         string $isoCode,
         string $name
     ) {
-
         $this->code = $code;
         $this->isoCode = $isoCode;
         $this->name = $name;

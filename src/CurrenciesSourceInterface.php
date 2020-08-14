@@ -13,6 +13,12 @@ namespace maxlzp\money;
 interface CurrenciesSourceInterface
 {
     /**
+     * Returns all supported currencies
+     * @return array
+     */
+    public function getAll(): array;
+
+    /**
      * Return CurrencyDto. Possibly from some storage/
      * @param string $currencyCode
      * @return mixed

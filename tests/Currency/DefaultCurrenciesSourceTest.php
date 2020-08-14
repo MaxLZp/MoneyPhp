@@ -6,6 +6,7 @@
 
 namespace maxlzp\money\tests;
 
+use MaxLZp\Money\CurrencyDto;
 use maxlzp\money\DefaultCurrenciesSource;
 use maxlzp\money\Exceptions\CurrencyUnsupportedException;
 
@@ -55,11 +56,21 @@ class DefaultCurrenciesSourceTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function shouldThrwwExceptionWhenCurrencyIsUnsupported()
+    public function shouldThrowExceptionWhenCurrencyIsUnsupported()
     {
         $this->setExpectedException(CurrencyUnsupportedException::class);
         $currencyCode = 'CAD'; //Canadian dollar
 
         $currencyDto = $this->source->getWithCode($currencyCode);
+    }
+
+    /**
+     * @test
+     */
+    public function getAllShouldReturnCurrencyDtoArray()
+    {
+        $currencies = $this->source->getAll();
+        $this->assertGreaterThan(0, \count($currencies));
+        $this->assertInstanceOf(CurrencyDto::class, $currencies[0]);
     }
 }

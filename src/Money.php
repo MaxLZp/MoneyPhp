@@ -30,6 +30,7 @@ class Money implements MoneyInterface
      * Money constructor.
      * @param int $amount
      * @param CurrencyInterface $currency
+     * @param int $roundingMode
      * @throws NegativeMoneyAmountException
      */
     public function __construct(
@@ -54,8 +55,10 @@ class Money implements MoneyInterface
      *
      * @param $name
      * @param $arguments
+     * @return Money
+     * @throws NegativeMoneyAmountException
      */
-    public static function __callStatic($name, $arguments)
+    public static function __callStatic($name, $arguments): MoneyInterface
     {
         return new self($arguments[0], Currency::$name());
     }
@@ -65,6 +68,7 @@ class Money implements MoneyInterface
      * @param MoneyInterface $other
      * @return MoneyInterface
      * @throws MoneyCurrencyMismatchException
+     * @throws NegativeMoneyAmountException
      */
     public function add(MoneyInterface $other): MoneyInterface
     {
@@ -89,6 +93,7 @@ class Money implements MoneyInterface
      * Checks whether the value represented by this object equals to the other.
      * @param MoneyInterface $other
      * @return bool
+     * @throws MoneyCurrencyMismatchException
      */
     public function equals(MoneyInterface $other): bool
     {
@@ -177,6 +182,7 @@ class Money implements MoneyInterface
      * Multiplies money amount
      * @param number $factor
      * @return MoneyInterface
+     * @throws NegativeMoneyAmountException
      */
     public function multiply(float $factor): MoneyInterface
     {
@@ -203,6 +209,7 @@ class Money implements MoneyInterface
     /**
      * @param MoneyInterface $other
      * @throws NegativeMoneyAmountException
+     * @throws MoneyCurrencyMismatchException
      */
     public function guardBiggerAmountSubtraction(MoneyInterface $other): void
     {
@@ -222,7 +229,7 @@ class Money implements MoneyInterface
     }
 
     /**
-     * @param MoneyInterface $other
+     * @param int $amount
      * @throws NegativeMoneyAmountException
      */
     protected function guardNegativeAmount(int $amount): void
@@ -232,7 +239,6 @@ class Money implements MoneyInterface
 
     /**
      * @param float $factor
-     * @throws NegativeMoneyAmountException
      */
     protected function guardNegativeFactor(float $factor): void
     {
